@@ -1,4 +1,4 @@
-<div *ngIf="hero">
+<div *ngIf="hero; else elseBlock">
   <h2>{{hero.name | uppercase}} Details</h2>
   <div><span>id: </span>{{hero.id}}</div>
   <div>
@@ -6,5 +6,7 @@
       <input [(ngModel)]="hero.name" placeholder="name" />
     </label>
   </div>
+  <button (click)="save()">💾 Save</button>
 </div>
-<button (click)="goBack()">go back</button>
+<ng-template #elseBlock><div>⚠ There is no such hero</div></ng-template>
+<button (click)="goBack()">🔙 Back</button>
