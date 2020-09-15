@@ -12,6 +12,11 @@ export class HeroesComponent implements OnInit {
 
 heroes: Hero[];
 
+
+ngOnInit(): void {
+  //call function
+  this.getHeroes();
+}
 // return heroes from service
 getHeroes(): void {
   this.heroService.getHeroes()
@@ -27,14 +32,17 @@ add(name: string): void {
     });
 }
 
+delete(hero: Hero): void {
+  // remove the hero from the list
+  this.heroes = this.heroes.filter(h => h !== hero);
+  // delete the hero using the service
+  this.heroService.deleteHero(hero)
+    .subscribe();
+}
+
 constructor(
   // init service
   private heroService: HeroService,
 ) { }
-
-ngOnInit(): void {
-  //call function
-  this.getHeroes();
-}
 
 }

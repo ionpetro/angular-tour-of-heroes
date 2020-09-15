@@ -49,3 +49,33 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+
+
+button {
+  background-color: #eee;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+}
+
+button.delete{
+  background-color: rgb(201, 69, 69);
+}
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+button.delete:hover{
+  background-color: rgb(124, 28, 28);
+}
+
+button.delete {
+  position: relative;
+  left: 194px;
+  top: -34px;
+  color: white;
+}
