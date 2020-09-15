@@ -19,7 +19,13 @@ export class DashboardComponent implements OnInit {
 
   getHeroes():void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(0,4)) //first four heroes
+      .subscribe(heroes => this.heroes = heroes
+          // sort by alphabetical order
+          .sort((a,b) => {
+            if(a.name > b.name) { return 1; }
+            if(a.name < b.name) { return -1; }
+            return 0;})
+          .slice(0,4)) //first four heroes
   }
 
   ngOnInit(): void {
