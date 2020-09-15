@@ -66,6 +66,22 @@ export class HeroService {
       );
   }
 
+  searchHeroes(term: string): Observable<Hero[]> {
+    // if there is no term, return nothing
+    if (!term.trim()) {
+      return of([]);
+    }
+    const url = `${this.heroesUrl}/?name=${term}`;
+
+    return this.http.get<Hero[]>(url)
+      .pipe(
+        tap(x => x.length ? // x represents the result
+          this.log(`found heroes matching "${term}"`):
+          this.log(`no heroes matching "${term}"`)),
+        catchError(this.handleError<Hero[]>('search Heroes', []))
+      )
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
